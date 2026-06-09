@@ -1,11 +1,11 @@
  const {test, expect} = require('@playwright/test');
  const {POManager} = require('../pageobjects/POManager');
 //Json->string-> js object
- const dataSet = JSON.parse(JSON.stringify(require("../utils/placeorderTestData")));
+ const dataset = JSON.parse(JSON.stringify(require("../utils/placeorderTestData")));
 
-for(data of dataSet)
+for(const data of dataset)
 {
- test(`Client App login ${data.productName}`, async ({page})=>
+test(`Client App login for ${data.productName}`, async ({page})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage
