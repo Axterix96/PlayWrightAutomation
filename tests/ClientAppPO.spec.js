@@ -3,24 +3,25 @@
 //Json->string-> js object
  const dataSet = JSON.parse(JSON.stringify(require("../utils/placeorderTestData")));
 
-
- test('Client App login', async ({page})=>
+for(data of dataSet)
+{
+ test(`Client App login ${data.productName}`, async ({page})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage
-     const username = dataSet.username;
-     const password = dataSet.password;
-     const productName = dataset.productName;
+     const username = data.username;
+     const password = data.password;
+     const productName = data.productName;
      const products = page.locator(".card-body");
      const loginPage = poManager.getLoginPage();
      await loginPage.goTo();
-     await loginPage.validLogin(dataSet.username,dataSet.password);
+     await loginPage.validLogin(data.username,data.password);
      const dashboardPage = poManager.getDashboardPage();
-     await dashboardPage.searchProductAddCart(dataSetproductName);
+     await dashboardPage.searchProductAddCart(data.productName);
      await dashboardPage.navigateToCart();
 
     const cartPage = poManager.getCartPage();
-    await cartPage.VerifyProductIsDisplayed(dataSet.productName);
+    await cartPage.VerifyProductIsDisplayed(data.productName);
     await cartPage.Checkout();
 
     const ordersReviewPage = poManager.getOrdersReviewPage();
@@ -33,46 +34,5 @@
    expect(orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-    
-
-
-    //Zara Coat 4
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
  });
- 
-
- 
-
-
-
- 
-
+}
