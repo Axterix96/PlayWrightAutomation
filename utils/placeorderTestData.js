@@ -1,10 +1,9 @@
-[{
+module.exports = [{
     "username": "xnicolaz96@gmail.com",
     "password": "Password1",
-    "productName": "Zara Coat 4"
+    "productName": "ZARA COAT 3"
 },
 {   "username": "xnicolaz96@gmail.com",
     "password": "Password1",
-    "productName": "Adidas Originals"
-}
-]
+    "productName": "ADIDAS ORIGINAL"
+}];

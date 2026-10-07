@@ -7,7 +7,7 @@
  {
     //js file- Login js, DashboardPage
      const email = "anshika@gmail.com";
-     const productName = 'Zara Coat 4';
+     const productName = 'ZARA COAT 3';
      const products = page.locator(".card-body");
      await page.goto("https://rahulshettyacademy.com/client");
      await page.locator("#userEmail").fill(email);
@@ -31,7 +31,7 @@
     //await page.pause();
     
     await page.locator("div li").first().waitFor();
-    const bool =await page.locator("h3:has-text('Zara Coat 4')").isVisible();
+    const bool =await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     expect(bool).toBeTruthy();
     await page.locator("text=Checkout").click();
     await page.locator("[placeholder*='Country']").type("ind",{delay:100});

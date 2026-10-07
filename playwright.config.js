@@ -1,29 +1,35 @@
 // @ts-check
-const { devices } = require('@playwright/test');
+const { defineConfig, devices } = require('@playwright/test');
 
-const config = {
+module.exports = defineConfig({
   testDir: './tests',
-  /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
-  
-    timeout: 5000
+    timeout: 5000,
   },
-  
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  fullySilent: true,
+  retries: 1,
+  reporter: [
+    ['html', { open: 'never' }],
+    ['list'],
+  ],
   use: {
-
-    browserName : 'chromium',
-    headless : false,
-    screenshot : 'on',
-    trace : 'on',//off,on
-    
-    
-    
+    baseURL: 'https://rahulshettyacademy.com',
+    browserName: 'chromium',
+    headless: true,
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    actionTimeout: 15000,
+    navigationTimeout: 30000,
+    ...devices['Desktop Chrome'],
   },
-
-
-};
-
-module.exports = config;
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+  ],
+});
